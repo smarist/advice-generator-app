@@ -2,6 +2,10 @@ import React from 'react';
 import './index.css';
 import {ReactComponent as DiceSvg} from "./images/icon-dice.svg"
 import {ReactComponent as DividerSvg} from "./images/pattern-divider-desktop.svg"
+import {ReactComponent as DividerSvg1} from "./images/pattern-divider-mobile.svg"
+import { useMediaQuery } from 'react-responsive'
+
+
 
 
 function App() {
@@ -22,6 +26,8 @@ function App() {
 
 console.log(advice)
   
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width:  1440px)' })
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1440px)' })
 
   return (
     <main>
@@ -31,6 +37,9 @@ console.log(advice)
            <div className='mini'>
               <h1 className="advice-title">Advice </h1>
               <p className='advice'>"{advice}."</p>
+              {isBigScreen && <p className='divider'><DividerSvg/></p>}
+              {isTabletOrMobile && <p className='divider'><DividerSvg1/></p>}
+              
            </div>
             
             <button onClick={()=> dice()}><DiceSvg className='svg'/></button>
