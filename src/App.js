@@ -31,12 +31,11 @@ function App() {
 
   React.useEffect(() => {
     setAdvice({
-      ...advice,
+      data: "",
       loading: true,
     })
     axios.get("https://api.adviceslip.com/advice").then((response) => {
       setAdvice({
-        ...advice,
         loading: false,
         data: response.data.slip.advice
       });
