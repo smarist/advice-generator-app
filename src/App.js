@@ -13,7 +13,8 @@ import Loader from './components/Loader';
 function App() {
   const [advice, setAdvice] = React.useState({
     loading: false,
-    data: ""
+    data: "",
+    id: ""
   })
   const [start, setStart] = React.useState(false)
 
@@ -30,6 +31,12 @@ function App() {
   */
 
   React.useEffect(() => {
+    fetchData()
+    
+  }, [start]);
+
+
+  function fetchData(){
     setAdvice({
       data: "",
       loading: true,
@@ -37,10 +44,11 @@ function App() {
     axios.get("https://api.adviceslip.com/advice").then((response) => {
       setAdvice({
         loading: false,
-        data: response.data.slip.advice
+        data: response.data.slip.advice,
+        id: response.data.slip.id
       });
     });
-  }, [start]);
+  }
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width:  900px)' })
   const isBigScreen = useMediaQuery({ query: '(min-width: 900px)' })
@@ -57,7 +65,7 @@ function App() {
          advice.data && !advice.loading?
          <div className="app">
            <div className='mini'>
-              <h1 className="advice-title">Advice </h1>
+              <h1 className="advice-title">Advice #{advice.id}</h1>
               <p className='advice'>"{advice.data}."</p>
               {isBigScreen && <p ><DividerSvg/></p>}
               {isTabletOrMobile && <p className='divider'><DividerSvg1/></p>}
