@@ -83,9 +83,14 @@
         background:#56FFAD;;
     }
     
-    .divider{
-        
+    button:hover{
+        filter: drop-shadow(0 0 0.75rem cyan);
     }
+
+    svg{
+        scale: 50%;
+    }
+
     
 }  
 
@@ -133,6 +138,10 @@
         margin: 0 auto;
         margin-top: -2.5rem;
         background:#56FFAD;;
+    }
+
+    button:hover{
+        filter: drop-shadow(0 0 0.75rem cyan);
     }
     
     
